@@ -1,0 +1,45 @@
+<!-- <p>product-detail of id {{id}}</p>
+{{product|json}} -->
+<!-- <div class="container"> -->
+    <!-- Here "async" is built-in pipe of angular api. It is used to subscribe the observable with writing code -->
+    <!-- <div *ngIf="product$|async as product"> -->
+        <!-- {{product|json}} -->
+    <!-- </div> -->
+<!-- </div> -->
+
+
+
+
+
+
+
+<div class="container">
+    <div *ngIf="product$|async as product">
+      <div class="container py-5">
+        <div class="row">
+          <div class="col-md-6">
+            <img src="{{product.productImage}}" class="img-fluid" alt="iPhone 14">
+          </div>
+          <div class="col-md-6">
+            <h1 class="display-4 fw-bold">{{product.productName}}</h1>
+            <h2>{{product.productPrice|discount:product.productDiscount|currency:"INR"}}</h2>
+            <p class="">MRP: <del>{{product.productPrice|currency:'INR'}}</del></p>
+            <p class="text-danger fw-bold">-{{product.productDiscount}}% OFF</p>
+            <p class="fw-bold text-muted">Released on {{product.productDate|date:"longDate"}}</p>
+            <div class="my-4">
+              <!-- {{product.productRating}}
+              <span class="text-warning">&#9733;</span>
+              <span class="text-warning">&#9733;</span>
+              <span class="text-warning">&#9733;</span>
+              <span class="text-warning">&#9733;</span> -->
+              <app-star [rating]="product.productRating"></app-star>
+            </div>
+            <button class="btn btn-success btn-lg">Add to Cart</button>
+          </div>
+        </div>
+        <div class="row">
+          <app-product-review-form [pId]="product.id"></app-product-review-form>
+        </div>
+      </div>
+    </div>
+</div>

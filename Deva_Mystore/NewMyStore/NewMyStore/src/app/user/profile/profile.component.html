@@ -1,0 +1,91 @@
+<!-- <p>profile works!</p> -->
+<div class="container">
+    <form (ngSubmit)="updateProfile()" [formGroup]="profileform">
+        <div class="mb-3">
+            <label for="name">Full Name:</label>
+            <input type="text" name="name" id="name" class="form-control" formControlName="name">
+        </div>
+        <div class="mb-3">
+            <label for="age">Age:</label>
+            <input type="text" name="age" id="age" class="form-control" formControlName="age">
+        </div>
+        <div class="mb-3">
+            <label for="email">Email:</label>
+            <input type="text" name="email" id="email" class="form-control" formControlName="email">
+        </div>
+        <div class="mb-3">
+            <label for="password">Password:</label>
+            <input type="text" name="password" id="password" class="form-control" formControlName="password">
+        </div>
+        <div class="mb-3">
+            <label for="cnfpassword">Confirm Password:</label>
+            <input type="text" name="cnfpassword" id="cnfpassword" class="form-control" formControlName="cnfpassword">
+        </div>
+        <div formArrayName="mobilenumbers">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mb-2" *ngFor="let control of mobilenumbers.controls; let i=index">
+                        <label for="line1" class="">Mobile {{i+1}}</label>
+                        <input type="text" [name]="i" class="form-control" [formControlName]="i">
+                    </div>
+                </div>
+                <button [disabled]="mobilenumbers.length>3" (click)="addMobile()" class="btn btn-outline-success m-1">+</button>
+                <button [disabled]="mobilenumbers.length<2"  (click)="removeMobile()" class="btn btn-outline-danger m-1">-</button>
+            </div>
+        </div>
+        
+        <div formGroupName="address">
+            <label for="address" class="form-label">Address:</label>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mb-2">
+                        <label for="line1" class="">Address line 1</label>
+                        <input type="text" name="line1" class="form-control" formControlName="line1">
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <label for="line2" class="">Address line 2</label>
+                        <input type="text" name="line2" class="form-control" formControlName="line2">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-2">
+                        <label for="city" class="form-label">City</label>
+                        <select class="form-control" name="city" formControlName="city">
+                            <option value="">select</option>
+                            <option value="bengaluru">Bengaluru</option>
+                            <option value="pune">Pune</option>
+                            <option value="chennai">Chennai</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <label for="city" class="form-label">State</label>
+                        <select class="form-control" name="state" formControlName="state">
+                            <option value="">select</option>
+                            <option value="karnataka">Karnataka</option>
+                            <option value="pune">Pune</option>
+                            <option value="chennai">Chennai</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-2">
+                    <label for="country" class="form-label">Country</label>
+                        <select class="form-control" name="country" formControlName="country">
+                            <option value="">select</option>
+                            <option value="india">India</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <label for="pincode" class="form-label">Pincode</label>
+                        <input type="text" name="pincode" class="form-control" formControlName="pincode">
+                        <div class="alert alert-danger" *ngIf="pincode.touched && pincode.invalid">
+                            <span *ngIf="pincode.errors?.['required']">Please Enter Pincode...</span>
+                            <span *ngIf="pincode.errors?.['pattern']">Please Enter valid Pincode...</span>
+                         </div>
+                    </div>
+                </div>     
+            </div>
+        </div>    
+        <input type="submit" value="Update Profile" [disabled]="profileform.invalid">
+    </form>
+</div>

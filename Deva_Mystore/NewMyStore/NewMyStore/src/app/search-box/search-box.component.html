@@ -1,0 +1,16 @@
+<!-- <p>search-box works!</p> -->
+<div class="mx-4 my-2">
+    <input class="form-control" type="text" name="searchquery" id="searchquery" [value]="searchQuery1" (input)="change($event)"/>
+    {{searchQuery1}}
+</div>
+
+<!-- Two way binding -->
+<div class="mx-4 my-2">
+    <input class="form-control" type="text" name="searchquery" id="searchquery" [(ngModel)]="searchQuery2" (input)="change($event)"/>
+    {{searchQuery2}}
+</div>
+ <!-- 
+    It is built-in angular directive which used achieve 2 way binding in angular.
+    ngModel directive is present in FormsModule.
+    2 way binding represent banana in the box syntax.
+ -->

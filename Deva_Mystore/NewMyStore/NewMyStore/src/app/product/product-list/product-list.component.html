@@ -1,0 +1,28 @@
+<!-- <p>product-list works!</p> -->
+<div class="container">
+    <div *ngIf="productlist.length>0">
+        <div class="row">
+            <div class="col" *ngFor="let product of productlist">
+                <div class="card">
+                    <img [ngClass]="cssClass" [src]="product.productImage" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 defaultSize="20px" appZoom="30px" class="card-title">{{product.productName | titlecase}}</h5>
+                      <p [ngClass]="cssPrice" class="card-text">{{product.productPrice|discount:product.productDiscount|currency:"INR"}}</p>
+                      <p class="card-text">MRP: <del>{{product.productPrice | currency:"INR"}}</del> {{product.productDiscount}}% off</p>
+                      <p class="card-text">{{product.productDate|date:"longDate"}}</p>
+                      <p>
+                        <app-star [rating]="product.productRating" (ratingEmitter)="show($event)"></app-star>
+                      </p>
+                      <a (click)="onDelete(product.id)" class="btn btn-danger m-1"><i class="bi bi-trash"></i></a>
+                      <a (click)="onAddToCart()" class="btn btn-primary m-1"><i class="bi bi-cart-plus"></i></a>
+                      <a [routerLink]="['/product', 'details', product.id]" class="btn btn-primary m-1"><i class="bi bi-eye"></i></a>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="productlist.length==0">
+        Product list is empty
+    </div>
+</div>
+

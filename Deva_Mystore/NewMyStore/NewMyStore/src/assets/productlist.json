@@ -1,0 +1,39 @@
+
+[
+    {
+      "id": 1001,
+      "productName": "iPhone 14",
+      "productPrice": 71999,
+      "productDiscount": 15,
+      "productDate": "2021-03-17",
+      "productRating": 4,
+      "productImage": "assets/ProductImages/iPhone 14.webp"
+    },
+    {
+      "id": 1002,
+      "productName": "OnePlus 10R",
+      "productPrice": 34999,
+      "productDiscount": 18,
+      "productDate": "2020-05-17",
+      "productRating": 3.5,
+      "productImage": "assets/ProductImages/Oneplus 10R.webp"
+    },
+    {
+      "id": 1003,
+      "productName": "Nothing",
+      "productPrice": 29999,
+      "productDiscount": 22,
+      "productDate": "2019-04-14",
+      "productRating": 4,
+      "productImage": "assets/ProductImages/Nothing phone 1.webp"
+    },
+    {
+      "id": 1004,
+      "productName": "Samsung galaxy s23 Ultra",
+      "productPrice": 129999,
+      "productDiscount": 22,
+      "productDate": "2019-04-14",
+      "productRating": 4,
+      "productImage": "assets/ProductImages/Samsung.webp"
+    }
+  ]

@@ -1,0 +1,130 @@
+<!-- <p>register works!</p> -->
+
+<div class="container">
+    <h2>Register Here</h2>
+    <form action="" [formGroup]="registerform">
+        <div class="mb-3">
+            <label for="name" class="form-label">Name:</label>
+            <input type="text" name="name" class="form-control" formControlName="name">
+            <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
+                <span *ngIf="name.errors?.['required']">Please Enter your Name...</span>
+                <span *ngIf="name.errors?.['pattern']">Please Enter valid Name...</span>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="age" class="form-label">Age:</label>
+            <input type="text" name="age" class="form-control" formControlName="age">
+            <div class="alert alert-danger" *ngIf="age.touched && age.invalid">
+                <span *ngIf="age.errors?.['required']">Please Enter your age...</span>
+                <span *ngIf="age.errors?.['ageRange']">Age must be between 
+                    {{age.errors?.['min']}} to  {{age.errors?.['max']}}
+                </span>
+             </div>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input type="text" name="email" class="form-control" formControlName="email">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label"> Password:</label>
+            <input type="password" name="password" class="form-control"
+             formControlName="password">
+             <div class="alert alert-danger" *ngIf="password.touched && password.invalid">
+                <span *ngIf="password.errors?.['required']">Please Enter your Password...</span>
+             </div>
+             <!-- <div
+              *ngIf="
+                password.invalid &&
+                (password.dirty || password.touched)
+              "
+              class="form-text text-danger"
+            >
+              <div *ngIf="password.errors?.['required']">
+                Field is required
+              </div>
+              <div *ngIf="password.errors?.['pattern']">
+                Password must contain at least one number, one uppercase and a
+                lowercase letter and at least 8 characters<br />Password cannot
+                contain whitespace
+              </div>
+            </div> -->
+        </div>
+        <div class="mb-3">
+            <label for="cnfpassword" class="form-label">Confirm Password</label>
+            <input type="password" name="cnfpassword" class="form-control"
+             formControlName="cnfpassword"> 
+             <div class="alert alert-danger" *ngIf="cnfpassword.touched && cnfpassword.invalid">
+                <span *ngIf="cnfpassword.errors?.['required']">Please Confirm your Password...</span>
+                <span *ngIf="cnfpassword.errors?.['passwordMatcher']">Password does not Match....</span>
+             </div>
+             
+        </div> 
+        
+        <div formArrayName="mobilenumbers">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mb-2" *ngFor="let control of mobilenumbers.controls; let i=index">
+                        <label for="line1" class="">Mobile {{i+1}}</label>
+                        <input type="text" [name]="i" class="form-control" [formControlName]="i">
+                    </div>
+                </div>
+                <button [disabled]="mobilenumbers.length>3" (click)="addMobile()" class="btn btn-outline-success m-1">+</button>
+                <button [disabled]="mobilenumbers.length<2"  (click)="removeMobile()" class="btn btn-outline-danger m-1">-</button>
+            </div>
+        </div>
+        
+        <div formGroupName="address">
+            <label for="address" class="form-label">Address:</label>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mb-2">
+                        <label for="line1" class="">Address line 1</label>
+                        <input type="text" name="line1" class="form-control" formControlName="line1">
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <label for="line2" class="">Address line 2</label>
+                        <input type="text" name="line2" class="form-control" formControlName="line2">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-2">
+                        <label for="city" class="form-label">City</label>
+                        <select class="form-control" name="city" formControlName="city">
+                            <option value="">select</option>
+                            <option value="bengaluru">Bengaluru</option>
+                            <option value="pune">Pune</option>
+                            <option value="chennai">Chennai</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <label for="city" class="form-label">State</label>
+                        <select class="form-control" name="state" formControlName="state">
+                            <option value="">select</option>
+                            <option value="karnataka">Karnataka</option>
+                            <option value="pune">Pune</option>
+                            <option value="chennai">Chennai</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-2">
+                    <label for="country" class="form-label">Country</label>
+                        <select class="form-control" name="country" formControlName="country">
+                            <option value="">select</option>
+                            <option value="india">India</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <label for="pincode" class="form-label">Pincode</label>
+                        <input type="text" name="pincode" class="form-control" formControlName="pincode">
+                        <div class="alert alert-danger" *ngIf="pincode.touched && pincode.invalid">
+                            <span *ngIf="pincode.errors?.['required']">Please Enter Pincode...</span>
+                            <span *ngIf="pincode.errors?.['pattern']">Please Enter valid Pincode...</span>
+                         </div>
+                    </div>
+                </div>     
+            </div>
+        </div>
+        <input type="submit" class="btn btn-outline-success" value="Register" [disabled]="registerform.invalid">
+    </form>
+</div>

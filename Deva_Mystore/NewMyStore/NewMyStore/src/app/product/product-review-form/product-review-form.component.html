@@ -1,0 +1,41 @@
+<!-- <p>product-review-form works!</p> -->
+
+<div class="container mb-5">
+    <form (ngSubmit)="onSubmit()" #reviewform="ngForm">
+        <div class="mb-3">
+            <label for="productId" class="form-label">Product ID:</label>
+            <input type="number" id="productId" class="form-control"
+            [(ngModel)]="productreview.productId" name="productId" required readonly
+            pattern = "^[0-9]{4}$"
+            #pId="ngModel">
+            <div class="alert alert-danger" [hidden]="pId.valid || pId.untouched">
+                <span [hidden]="!pId.errors?.['required']">Enter a valid Product ID......!</span>
+                <span [hidden]="!pId.errors?.['pattern']">Product ID must contain four digits.......!</span>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="customerEmail" class="form-label">Customer Email:</label>
+            <input type="email" id="customerEmail" class="form-control"
+            [(ngModel)]="productreview.customerEmail" name="customerEmail" required
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+            #cmail="ngModel">
+            <div class="alert alert-danger" [hidden]="cmail.valid || cmail.untouched">
+                <span [hidden]="!cmail.errors?.['required']">Please enter your email......!</span>
+                <span [hidden]="!cmail.errors?.['pattern']">Enter a valid Email......!</span>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="productRating" class="form-label">Product Rating:</label>
+            <input type="range" id="productRating" class="form-control" min="0" max="5" value="2" 
+            [(ngModel)]="productreview.productRating" name="productRating">
+        </div>
+        <div class="mb-3">
+            <label for="productComment" class="form-label">Message:</label>
+            <textarea type="string" id="productComment" class="form-control" rows="3"
+            [(ngModel)]="productreview.productComment" name="productComment"></textarea>
+        </div>
+        <input type="submit" value="submit" class="btn btn-outline-success"
+        [disabled]="reviewform.invalid">
+    </form>
+    
+</div>
