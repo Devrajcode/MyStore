@@ -1,1 +1,0 @@
-# Deva_Mystore
